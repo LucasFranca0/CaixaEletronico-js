@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aula 3 - Javascript</title>
+
+	<script>
+		let x = 0;
+		var saldo = 100.5; //Float
+
+		var nome = prompt("Informe seu nome, por favor: ");
+		alert(`Olá ${nome} é um prazer ter você por aqui!`);
+
+		function inicio() {
+
+			var escolha = parseInt(prompt('Selecione uma opção 1.) Saldo | 2.) Extrato | 3.) Saque | 4.) Depósito  5.) Transferência  | 6.) Sair'));
+
+
+			switch (escolha) {
+				case 1:
+					ver_saldo();
+					break;
+				case 2:
+					ver_extrato();
+					break;
+				case 3:
+					fazer_saque();
+					break;
+				case 4:
+					fazer_deposito();
+					break
+				case 5:
+					fazer_transf();
+					break
+				case 6:
+					sair();
+					break;
+				default:
+					erro();
+					break
+			}
+		}
+
+		function ver_saldo() {
+			var senha = parseFloat(prompt("Insira sua senha: "));
+
+			if (senha != 3589) {
+				alert('Senha incorreta.');
+				ver_saldo()
+			}
+			else if (senha === 3589) {
+				alert('Seu saldo atual é: ' + saldo);
+				inicio();
+			}
+		}
+
+		function ver_extrato() {
+			var senha = parseFloat(prompt("Insira sua senha: "));
+
+			if (senha != 3589) {
+				alert('Senha incorreta.');
+				ver_extrato()
+			}
+			else if (senha === 3589) {
+				alert("Seu extrato:\nLojas Pernambucanas 100R$\n" + "Casas Bahia 200R$");
+				inicio()
+			}
+
+		}
+
+
+		function fazer_saque() {
+
+			var saque = parseFloat(prompt('Qual o valor para saque?'));
+			var senha = parseFloat(prompt("Insira sua senha: "));
+
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número:');
+				fazer_saque();
+			}
+
+			if (senha != 3589) {
+				alert('Senha incorreta.');
+				fazer_saque()
+			}
+
+			else if (saldo < saque) {
+				alert("Operação não autorizada");
+				fazer_saque();
+			}
+			else if (saque <= 0) {
+				alert("Operação não autorizada");
+				fazer_saque();
+			}
+			else (senha === 3589); {
+				saldo -= saque;
+				//saldo = saldo - saque;
+				alert("Seu saldo atual é: " + saldo);
+				inicio();
+			}
+		}
+
+		function fazer_deposito() {
+
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			// Not a Number
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número.');
+				fazer_deposito();
+			} else if (deposito <= 0) {
+				alert("Operação não autorizada");
+				fazer_deposito();
+			}
+			else {
+				saldo += deposito;
+				//saldo = saldo + deposito;
+				alert("Seu saldo atual é: " + saldo);
+				inicio();
+			}
+		}
+
+		function fazer_transf() {
+
+			var transf = parseFloat(prompt('Informe o número da conta: '));
+			var valorTrans = parseFloat(prompt('Informe o valor da transferência: '));
+			var senha = parseFloat(prompt("Insira sua senha: "));
+
+			if (isNaN(transf) || transf === '') {
+				alert('Por favor, informe o número da conta válido:');
+				fazer_transf();
+			}
+
+			else if (senha != 3589) {
+				alert('Senha incorreta.');
+				fazer_transf()
+			}
+
+			else if (saldo < valorTrans) {
+				alert("Operação não autorizada");
+				fazer_transf();
+			}
+
+			else if (valorTrans <= 0) {
+				alert("Operação não autorizada");
+				fazer_transf();
+			}
+			else (senha === 3589); {
+				saldo -= valorTrans;
+				//saldo = saldo - saque;
+				alert("Seu saldo atual é: " + saldo);
+				inicio();
+			}
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				alert(`${nome}, foi um prazer ter você por aqui!`)
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 6.');
+			inicio();
+		}
+
+		
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
